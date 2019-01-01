@@ -38,7 +38,7 @@ Interceptor Layer 是其他 5 层的纽带，贯穿了整体的请求与响应�
 
 ## 扩展阅读
 
-[OkHttpClient3 连接池模型](./OkHttpClient3 连接池模型.md)
+[OkHttpClient3 连接池模型](./OkHttpClient3连接池模型.md)
 
 ## 版权声明
 

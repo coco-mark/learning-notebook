@@ -24,11 +24,13 @@ SoftReference weakRef = new SoftReference(new Object);
 
 软引用一般用于**可伸缩式缓存**，即缓存本身的大小不固定，可随着存储空间的增加而增加。因为软引用只有在**内存不足时，才会被 gc 回收**。
 
-基于弱引用的回收特性，最常见的一种用法就是 `WeakHashMap`，还可以解决 [Lapsed listener problem](https://en.wikipedia.org/wiki/Lapsed_listener_problem)。当出现“内存坏账”的时候，它可以解决“坏账”引用的回收问题。例如，使用 `ThreadLocal` 容器时，可以将 `WeakReference` 作为元素，这样可以不用考虑被引用对象的回收问题。
+基于弱引用的回收特性，最常见的一种用法是 `WeakHashMap`。弱引用还可以解决 [Lapsed listener problem](https://en.wikipedia.org/wiki/Lapsed_listener_problem)。
+
+当出现“内存坏账”的时候，它可以解决“坏账”引用的回收问题。例如，使用 `ThreadLocal` 容器时，可以将 `WeakReference` 作为元素，这样可以不用考虑被引用对象的回收问题。
 
 ### 何时被回收
 
-当使用软引用或弱引用的时候，要明白创建了 2 个对象：**引用对象（Reference）**和**被引用对象（Referent）**。被引用对象根据约定会被 gc 回收。但是由于引用对象是一个强引用，不会被 gc 自动回收。
+当使用软引用或弱引用的时候，要明白创建了 2 个对象：**引用对象（Reference）**和**被引用对象（Referent）**。被引用对象根据约定会被 gc 回收。但是由于引用对象是强引用，不会被 gc 自动回收。
 
 ```java
 // ref1 and object A
@@ -36,6 +38,7 @@ Reference ref1 = new WeakReference(new Object());
 // ref2 and object B
 Reference ref2 = new SoftReference(new Object());
 
+// release refs by handle
 if (ref1.get() == null) ref1 = null;
 if (ref2.get() == null) ref2 = null;
 ```
@@ -50,7 +53,7 @@ Reference ref1 = new WeakReference(new Object());
 Object N = ref1.get();
 ```
 
->  **可达性**是 JVM 在内存回收时，判断对象是否可以被回收的标准，更多关于内存回收的内容在 [JVM 内存回收](./JVM 内存回收.md)
+>  **可达性**是 JVM 在内存回收时，判断对象是否可以被回收的标准，更多关于内存回收的内容在 [JVM 内存回收](./JVM内存回收.md)
 
 ### ReferenceQueue
 
@@ -66,7 +69,7 @@ System.out.println(refQueue.remove()); // java.lang.ref.WeakReference@198e2867
 
 ## Tick, Tick
 
-本篇重点讲解回收时，gc 回收的是 Referent，而不是 Reference。用于提醒读者，在后续的开发中，不要因使用了 Reference 却没有手动的清空 Reference 而出现内存泄漏。
+本篇重点讲解引用的回收：gc 回收的是 Referent，而不是 Reference。用于提醒读者，在后续的开发中，不要因使用了 Reference 却没有手动的清理 Reference 对象而出现内存泄漏。
 
 ## 扩展阅读
 
@@ -76,7 +79,7 @@ System.out.println(refQueue.remove()); // java.lang.ref.WeakReference@198e2867
 
 [Lapsed listener problem](https://en.wikipedia.org/wiki/Lapsed_listener_problem)
 
-[JVM 内存回收](./JVM 内存回收.md)
+[JVM 内存回收](./JVM内存回收.md)
 
 ## 版权声明
 

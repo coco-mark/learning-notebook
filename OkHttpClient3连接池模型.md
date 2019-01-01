@@ -108,7 +108,7 @@ public final class ConnectionPool {
 
 ## 获取连接 & 创建连接
 
-获取连接的过程包含了连接的创建。获取连接最初是由 `ConnectInterceptor` 拦截器发起的。拦截器模式是 OkHttp 整体流程的主干，贯穿了整体请求与响应流程，[OkHttpClient3 架构简介](./OkHttpClient3 架构简介.md) 包含了 OkHttp 拦截器在整体架构中的地位与应用。
+获取连接的过程包含了连接的创建。获取连接最初是由 `ConnectInterceptor` 拦截器发起的。拦截器模式是 OkHttp 整体流程的主干，贯穿了整体请求与响应流程，[OkHttpClient3 架构简介](./OkHttpClient3架构简介.md) 包含了 OkHttp 拦截器在整体架构中的地位与应用。
 
 ```java
 /* ConnectInterceptor class */
@@ -175,7 +175,7 @@ public final class StreamAllocation {
 
 ## 线程安全
 
-> 本节所介绍的线程安全仅仅是有关连接池的线程安全。更多线程模型介绍在 [OkHttpClient3 线程模型](./OkHttpClient3 线程模型.md)。
+> 本节所介绍的线程安全仅仅是有关连接池的线程安全。更多线程模型介绍在 [OkHttpClient3 线程模型](./OkHttpClient3线程模型.md)。
 
 线程安全的核心是解决 **共享资源在竞争条件下的状态不确定** 问题。解决过程中的关键一步在于：找出可能处于竞争条件的共享变量。
 
@@ -232,23 +232,23 @@ cleanupRuning 变量只在 `put()` 和 `cleanup()` 方法中用到，这两方�
 
 ## Tick, Tick
 
-本篇文档偏重于讲解 OkHttp 线程模型的“骨骼”，其中的细节没有过多的涉及。目的是了解连接池的核心——**安全高效的获取连接和回收连接**，这是最有“营养”的部分。关于 HTTP 的协议、代理、路由等，没有停留太久，这些不是本篇的重点。更多的介绍在 [HTTP 2.0 的价值在哪里](./HTTP 2.0 的价值在哪里.md)。
+本篇文档偏重于讲解 OkHttp 线程模型的“骨骼”，其中的细节没有过多的涉及。目的是了解连接池的核心——**安全高效的获取连接和回收连接**，这是最有“营养”的部分。关于 HTTP 的协议、代理、路由等，没有停留太久，这些不是本篇的重点。更多的介绍在 [HTTP 2.0 的价值在哪里](HTTP2.0的价值在哪里.md)。
 
 照猫画虎，笔者仿照 OkHttp3 连接池模型写了一个 [Demo](./samples/okhttp/connectionpool/)，欢迎各位大牛探讨与斧正。
 
 ## 扩展阅读
 
-[Thread wait & sleep](./Thread wait & sleep.md)
+[Thread wait & sleep](./Thread-wait-sleep.md)
 
-[OkHttpClient3 架构简介](./OkHttpClient3 架构简介)
+[OkHttpClient3 架构简介](./OkHttpClient3架构简介)
 
-[Java 的引用与回收](./Java 的引用与回收.md)
+[Java 的引用与回收](./Java的引用与回收.md)
 
-[OkHttpClient3 线程模型](./OkHttpClient3 线程模型.md)
+[OkHttpClient3 线程模型](./OkHttpClient3线程模型.md)
 
 [操作系统的线程管理](./操作系统的线程管理.md)
 
-[HTTP 2.0 的价值在哪里](./HTTP 2.0 的价值在哪里.md)
+[HTTP 2.0 的价值在哪里](HTTP2.0的价值在哪里.md)
 
 ## 版权声明
 
