@@ -1,6 +1,6 @@
 # README
 
-2019 has bean arrived，tick, tick...
+2019 has bean arrived, tick, tick...
 
 ## OkHttpClient3
 
