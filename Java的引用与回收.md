@@ -57,7 +57,7 @@ Object N = ref1.get();
 
 ### ReferenceQueue
 
-**引用队列（ReferenceQueue）**可以和 Reference 配合使用。当 gc 会收了 Referent 后，会将 Reference 放入队列中，以此通知用户 Referent 已经被回收。
+**引用队列（ReferenceQueue）** 可以和 Reference 配合使用。当 gc 会收了 Referent 后，会将 Reference 放入队列中，以此通知用户 Referent 已经被回收。
 
 ```java
 ReferenceQueue<Object> refQueue = new ReferenceQueue<>();
