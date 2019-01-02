@@ -73,11 +73,11 @@ System.out.println(refQueue.remove()); // java.lang.ref.WeakReference@198e2867
 
 ## 扩展阅读
 
-[Weak References in Java](https://www.baeldung.com/java-weak-reference)
+[Weak References in Java - Baeldung](https://www.baeldung.com/java-weak-reference)
 
-[Soft References in Java](https://www.baeldung.com/java-soft-references)
+[Soft References in Java - Baeldung](https://www.baeldung.com/java-soft-references)
 
-[Lapsed listener problem](https://en.wikipedia.org/wiki/Lapsed_listener_problem)
+[Lapsed listener problem - Wikipedia](https://en.wikipedia.org/wiki/Lapsed_listener_problem)
 
 [JVM 内存回收](./JVM内存回收.md)
 

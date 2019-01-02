@@ -1,26 +1,49 @@
 # Thread wait & sleep
 
->   蛮荒之地，笔者正在火速开垦......
+## Thread wait
 
-## Tick, Tick
+**线程等待（wait）**是线程的状态之一。进入等待状态的线程会自动放弃**对象锁（Monitor）**，然后进入线程等待状态。当其他线程调用 `notify()` 或 `notifyAll()` ，等待线程进入**可运行状态（Runnable）**，等待 CPU 调度。[线程的一生](./线程的一生.md)介绍了线程状态间切换的过程。
 
-本篇文档偏重于讲解 OkHttp 线程模型的“骨骼”，其中的细节没有过多的涉及。目的是了解连接池的核心——**安全高效的获取连接和回收连接**，这是最有“营养”的部分。关于 HTTP 的协议、代理、路由等，没有停留太久，这些不是本篇的重点。更多的介绍在 [HTTP 2.0 的价值在哪里](HTTP2.0的价值在哪里.md)。
+调用 Object.wait() 前，**必须**已经获取了对象锁，否则将抛出 [IllegalMonitorStateException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalMonitorStateException.html)。
 
-照猫画虎，笔者仿照 OkHttp3 连接池模型写了一个 [Demo](./samples/okhttp/connection-pool/)，欢迎各位大牛探讨与斧正。
+```java
+public class Demo {
+    private final Object lock = new Object();
+    
+    public void badUsage() {
+        // will throw IllegalMonitorStateException
+        lock.wait();
+    }
+    
+    public void goodUsage() {
+        synchronized (lock) {
+            lock.wait();
+        }
+    }
+}
+```
+
+## Thread sleep
+
+处于 sleep 的线程仍然处于**运行（Running）**状态。与 wait 不同是：线程不会因为 sleep 而放弃对象锁。当然，在任何情况下都可以调用 `Thread.sleep()` 方法，即使是未获得任何对象锁的前提下。
+
+处于 sleep 下的线程，可能被其他线程**中断（Interrupt）**，中断响应后将抛出 [InterruptedException](https://docs.oracle.com/javase/8/docs/api/java/lang/InterruptedException.html)。[何时需要线程中断](./何时需要线程中断)中介绍了更多中断的内容。
+
+## Thread await
+
+`wait()` 方法属于 `Object` 类，`await()` 方法属于 `Condition` 类。
+
+两者都是需要在获取锁的前提下调用，调用成功后放弃锁。前者获取对象锁，后者获取显式锁（Java 中 `Lock` 的实现类）。
+
+`Object.notify()` 随机唤醒一个等待线程，`Condition.signal()` 唤醒指定的等待线程。这是使用上最大的不同。
 
 ## 扩展阅读
 
-[Thread wait & sleep](./Thread-wait-sleep.md)
+[线程的一生](./线程的一生.md)
 
-[OkHttpClient3 架构简介](./OkHttpClient3架构简介)
+[何时需要线程中断](./何时需要线程中断)
 
-[Java 的引用与回收](./Java的引用与回收.md)
-
-[OkHttpClient3 线程模型](./OkHttpClient3线程模型.md)
-
-[操作系统的线程管理](./操作系统的线程管理.md)
-
-[HTTP 2.0 的价值在哪里](HTTP2.0的价值在哪里.md)
+[Java并发编程：线程间协作的两种方式：wait、notify、notifyAll和Condition - 海子](https://www.cnblogs.com/dolphin0520/p/3920385.html)
 
 ## 版权声明
 
