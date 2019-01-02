@@ -234,7 +234,7 @@ cleanupRuning 变量只在 `put()` 和 `cleanup()` 方法中用到，这两方�
 
 本篇文档偏重于讲解 OkHttp 线程模型的“骨骼”，其中的细节没有过多的涉及。目的是了解连接池的核心——**安全高效的获取连接和回收连接**，这是最有“营养”的部分。关于 HTTP 的协议、代理、路由等，没有停留太久，这些不是本篇的重点。更多的介绍在 [HTTP 2.0 的价值在哪里](HTTP2.0的价值在哪里.md)。
 
-照猫画虎，笔者仿照 OkHttp3 连接池模型写了一个 [Demo](./samples/okhttp/connectionpool/)，欢迎各位大牛探讨与斧正。
+照猫画虎，笔者仿照 OkHttp3 连接池模型写了一个 [Demo](./samples/okhttp/connection-pool/)，欢迎各位大牛探讨与斧正。
 
 ## 扩展阅读
 
