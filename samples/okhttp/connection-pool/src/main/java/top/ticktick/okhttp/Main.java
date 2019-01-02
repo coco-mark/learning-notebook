@@ -28,8 +28,10 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             Thread t = new Thread(task);
             t.start();
+            // slow down the cnn creation process
             Thread.sleep(RandomUtils.nextInt(0, 10));
         }
+        // wait for cleanup thread finished.
         Thread.sleep(12 * 1000);
     }
 }
