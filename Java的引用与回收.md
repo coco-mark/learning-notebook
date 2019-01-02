@@ -11,13 +11,13 @@ Object ref = new Object();
 软引用：通过 `SoftReference` 包裹的引用，**内存不足**时，如果没有强引用指向它则被 gc 回收。
 
 ```java
-WeakReference weakRef = new WeakReference(new Object);
+SoftReference weakRef = new SoftReference(new Object);
 ```
 
 弱引用：通过 `WeakReference` 包裹的引用，**下一次 gc** 时，如果没有强引用指向它则被 gc 回收。
 
 ```java
-SoftReference weakRef = new SoftReference(new Object);
+WeakReference weakRef = new WeakReference(new Object);
 ```
 
 ## 软引用 & 弱引用的使用
