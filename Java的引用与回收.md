@@ -26,7 +26,7 @@ WeakReference weakRef = new WeakReference(new Object);
 
 基于弱引用的回收特性，最常见的一种用法是 `WeakHashMap`。弱引用还可以解决 [Lapsed listener problem](https://en.wikipedia.org/wiki/Lapsed_listener_problem)。
 
-当出现“内存坏账”的时候，它可以解决“坏账”引用的回收问题。例如，使用 `ThreadLocal` 容器时，可以将 `WeakReference` 作为元素，这样可以不用考虑被引用对象的回收问题。
+当出现“内存坏账”的时候，它可以解决“坏账”对象的回收问题。例如，使用 `ThreadLocal` 容器时，可以将 `WeakReference` 作为元素，这样可以不用考虑被引用对象的回收问题。
 
 ### 何时被回收
 
