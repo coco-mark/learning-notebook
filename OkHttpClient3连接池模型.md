@@ -213,7 +213,7 @@ public final class ConnectionPool {
 
 ### Connctons
 
-OkHttp 在任何地方都使用了对象锁来保证访问 connections 都正确性，由于 `ConnetionPool` 对于 `OkHttpClient` 而言是单例，对象锁可以解决并发冲突。
+OkHttp 在任何地方都使用了对象锁来保证访问 connections 的正确性，由于 `ConnetionPool` 对于 `OkHttpClient` 而言是单例，对象锁可以解决并发冲突。
 
 ### RouteDataBase
 
