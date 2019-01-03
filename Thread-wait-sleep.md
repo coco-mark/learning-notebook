@@ -25,7 +25,7 @@ public class Demo {
 
 ## Thread sleep
 
-处于 sleep 的线程仍然处于**运行（Running）**状态。与 wait 不同是：线程不会因为 sleep 而放弃对象锁。当然，在任何情况下都可以调用 `Thread.sleep()` 方法，即使是未获得任何对象锁的前提下。
+处于 sleep 的线程仍然处于 **运行（Running）** 状态。与 wait 不同是：线程不会因为 sleep 而放弃对象锁。当然，在任何情况下都可以调用 `Thread.sleep()` 方法，即使是未获得任何对象锁的前提下。
 
 处于 sleep 下的线程，可能被其他线程**中断（Interrupt）**，中断响应后将抛出 [InterruptedException](https://docs.oracle.com/javase/8/docs/api/java/lang/InterruptedException.html)。[何时需要线程中断](./何时需要线程中断)中介绍了更多中断的内容。
 
