@@ -41,7 +41,7 @@ public final class StreamAllocation {
 
 ## 连接销毁
 
-> 我们采用“倒叙”的方式铺开连接池的管理，从销毁讲起，后面还包括：连接的获取、连接的创建和线程安全保障
+> 我们采用“倒叙”的方式铺开连接池的管理，从销毁讲起，后面还包括：连接的获取、连接的创建和线程安全保障
 
 cnn 维护在 `ConnectionPool#connections` 中，数据结构如下：
 
@@ -213,7 +213,7 @@ public final class ConnectionPool {
 
 ### Connctons
 
-OkHttp 在任何地方都使用了对象锁来保证访问 connections 都正确性，由于 `ConnetionPool` 对于 `OkHttpClient` 而言是单例，对象锁可以解决并发冲突。
+OkHttp 在任何地方都使用了对象锁来保证访问 connections 的正确性，由于 `ConnetionPool` 对于 `OkHttpClient` 而言是单例，对象锁可以解决并发冲突。
 
 ### RouteDataBase
 
@@ -234,7 +234,7 @@ cleanupRuning 变量只在 `put()` 和 `cleanup()` 方法中用到，这两方�
 
 本篇文档偏重于讲解 OkHttp 线程模型的“骨骼”，其中的细节没有过多的涉及。目的是了解连接池的核心——**安全高效的获取连接和回收连接**，这是最有“营养”的部分。关于 HTTP 的协议、代理、路由等，没有停留太久，这些不是本篇的重点。更多的介绍在 [HTTP 2.0 的价值在哪里](HTTP2.0的价值在哪里.md)。
 
-照猫画虎，笔者仿照 OkHttp3 连接池模型写了一个 [Demo](./samples/okhttp/connectionpool/)，欢迎各位大牛探讨与斧正。
+照猫画虎，笔者仿照 OkHttp3 连接池模型写了一个 [Demo](./samples/okhttp/connection-pool/)，欢迎各位大牛探讨与斧正。
 
 ## 扩展阅读
 

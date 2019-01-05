@@ -11,13 +11,13 @@ Object ref = new Object();
 软引用：通过 `SoftReference` 包裹的引用，**内存不足**时，如果没有强引用指向它则被 gc 回收。
 
 ```java
-WeakReference weakRef = new WeakReference(new Object);
+SoftReference weakRef = new SoftReference(new Object);
 ```
 
 弱引用：通过 `WeakReference` 包裹的引用，**下一次 gc** 时，如果没有强引用指向它则被 gc 回收。
 
 ```java
-SoftReference weakRef = new SoftReference(new Object);
+WeakReference weakRef = new WeakReference(new Object);
 ```
 
 ## 软引用 & 弱引用的使用
@@ -26,7 +26,7 @@ SoftReference weakRef = new SoftReference(new Object);
 
 基于弱引用的回收特性，最常见的一种用法是 `WeakHashMap`。弱引用还可以解决 [Lapsed listener problem](https://en.wikipedia.org/wiki/Lapsed_listener_problem)。
 
-当出现“内存坏账”的时候，它可以解决“坏账”引用的回收问题。例如，使用 `ThreadLocal` 容器时，可以将 `WeakReference` 作为元素，这样可以不用考虑被引用对象的回收问题。
+当出现“内存坏账”的时候，它可以解决“坏账”对象的回收问题。例如，使用 `ThreadLocal` 容器时，可以将 `WeakReference` 作为元素，这样可以不用考虑被引用对象的回收问题。
 
 ### 何时被回收
 
@@ -45,7 +45,7 @@ if (ref2.get() == null) ref2 = null;
 
 其中，gc 会在约定下回收 `A`、`B` 两个对象，`ref1` 和 `ref2` 不会被 gc 回收。
 
-如果不希望被引用对象 `A` 被 gc 回收，需要使用强引用 `F` 重新指向对象，让对象 `A` 处于**可达**状态。
+如果不希望被引用对象 `A` 被 gc 回收，需要使用强引用 `N` 重新指向对象，让对象 `A` 处于**可达**状态。
 
 ```java
 // ref1 and object A
@@ -57,7 +57,7 @@ Object N = ref1.get();
 
 ### ReferenceQueue
 
-**引用队列（ReferenceQueue）**可以和 Reference 配合使用。当 gc 会收了 Referent 后，会将 Reference 放入队列中，以此通知用户 Referent 已经被回收。
+**引用队列（ReferenceQueue）** 可以和 Reference 配合使用。当 gc 会收了 Referent 后，会将 Reference 放入队列中，以此通知用户 Referent 已经被回收。
 
 ```java
 ReferenceQueue<Object> refQueue = new ReferenceQueue<>();
@@ -73,13 +73,13 @@ System.out.println(refQueue.remove()); // java.lang.ref.WeakReference@198e2867
 
 ## 扩展阅读
 
-[Weak References in Java](https://www.baeldung.com/java-weak-reference)
-
-[Soft References in Java](https://www.baeldung.com/java-soft-references)
-
-[Lapsed listener problem](https://en.wikipedia.org/wiki/Lapsed_listener_problem)
-
 [JVM 内存回收](./JVM内存回收.md)
+
+[Weak References in Java - Baeldung](https://www.baeldung.com/java-weak-reference)
+
+[Soft References in Java - Baeldung](https://www.baeldung.com/java-soft-references)
+
+[Lapsed listener problem - Wikipedia](https://en.wikipedia.org/wiki/Lapsed_listener_problem)
 
 ## 版权声明
 
