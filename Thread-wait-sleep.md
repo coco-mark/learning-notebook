@@ -2,7 +2,7 @@
 
 ## Thread wait
 
-**线程等待（wait）** 是线程的状态之一。进入等待状态的线程会自动放弃 **对象锁（Monitor）**，然后进入线程等待状态。当其他线程调用 `notify()` 或 `notifyAll()` ，等待线程进入**可运行状态（Runnable）**，等待 CPU 调度。[线程的一生](./线程的一生.md)介绍了线程状态间切换的过程。
+**线程等待（Waiting）** 是线程的状态之一。通过 `Thread.wait()` 进入等待状态的线程会自动放弃 **对象锁（Monitor）**，然后进入线程等待状态。当其他线程调用 `notify()` 或 `notifyAll()` ，等待线程进入**可运行状态（Runnable）**，等待 CPU 调度。[线程的一生](./线程的一生.md)介绍了线程状态间切换的过程。
 
 调用 `Object.wait()` 前，**必须**已经获取了对象锁，否则将抛出 [IllegalMonitorStateException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalMonitorStateException.html)。
 
@@ -25,7 +25,7 @@ public class Demo {
 
 ## Thread sleep
 
-处于 sleep 的线程仍然处于 **运行（Running）** 状态。与 wait 不同是：线程不会因为 sleep 而放弃对象锁。当然，在任何情况下都可以调用 `Thread.sleep()` 方法，即使是未获得任何对象锁的前提下。
+处于 sleep 的线程也进入 **等待** 状态。与 `Thread.wait()` 不同是：线程不会因为 sleep 而放弃对象锁。当然，在任何情况下都可以调用 `Thread.sleep()` 方法，即使是未获得任何对象锁的前提下。
 
 处于 sleep 下的线程，可能被其他线程**中断（Interrupt）**，中断响应后将抛出 [InterruptedException](https://docs.oracle.com/javase/8/docs/api/java/lang/InterruptedException.html)。[何时需要线程中断](./何时需要线程中断)中介绍了更多中断的内容。
 
