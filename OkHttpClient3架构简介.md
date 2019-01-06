@@ -1,6 +1,8 @@
 # OkHttpClient3 架构简介
 
-OkHttp 旨在提供简单、稳定、高效的 HTTP Client 服务，并且支持 HTTP 2.0 以及 WebSocket。总体架构分 6 层。
+OkHttp 旨在提供简单、稳定、高效的 HTTP Client 服务，并且支持 HTTP 2.0 以及 WebSocket。
+
+## 总体架构分 6 层
 
 Protocols Layer 涵盖了 OkHttp 支持的所有“功能”，实现了复杂的协议通讯和 TSL 握手与验证。
 
