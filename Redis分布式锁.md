@@ -1,3 +1,5 @@
+## 简介
+
 redis 的 `set`、`get`、`del`命令都具有原子性，同时 redis 也适用于分布式存储。因此，`setnx`、`set` 常常用来作为分布式锁的实现。
 
 `setnx` 经常在 redis-2.6.12 之前作为分布锁使用。redis-2.6.12 以后，`set` 支持了 `ex`、`nx` 参数，将 `setnx` 中死锁问题简单化。redis 官方推荐使用 `set` 来实现分布式锁。
@@ -42,6 +44,7 @@ SETNX lock.foo <current Unix time + lock timeout + 1>
 尽管最终 `lock.foo` 中设定的 Unix time 是由 C4 设定，但是锁最终由 C5 争抢到。从本质而言，并没有破坏锁竞争的公平性，也没有造成再一次的死锁。
 
 ### 为什么不用 Redis expire 命令来控制锁的失效时间？
+
 那是因为 `setnx` 和 `expire` 两个命令共同使用时，不具有原子性。所以存在这种情况：redis client 发送了 `setnx` 命令后宕机，导致 `expire` 命令没有执行，最终导致死锁问题出现。
 
 >   通过 lua 脚本和 exec 命令也可以实现两命令的原子性执行。但这并不是本文的重点，不做赘述。
@@ -85,3 +88,11 @@ set 锁的实现有 2 点需要注意：
 
 ### 可重入性分析
 由于 value 具有唯一性，可以确定锁持有者的身份，因此 **具有可重入性**。
+
+## 版权声明
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。
+
+<p align="center">
+  <img src="assets/support.jpg" width="240px"/><br />感谢支持！
+</p>
