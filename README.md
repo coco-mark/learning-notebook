@@ -10,20 +10,18 @@
 ## Java
 
 -  [Java 的引用与回收](./Java的引用与回收.md)
-
 -  [Thread wait & sleep](./Thread-wait-sleep.md)
-
 -  [线程的一生](./线程的一生.md)
-
 -  [JVM 内存回收](JVM内存回收.md)
+-  [Java 基础 - equals 与 hashcode](Java基础-equals与hashcode.md)
 
 ## Redis
 
--   [Redis分布式锁](./Redis分布式锁.md)
+-   [Redis分布式锁](./Redis系列-Redis分布式锁.md)
 
 ## Hadoop
 
--   [Hadoop系列 - HDFS存储模型与架构模型](Hadoop系列-HDFS存储模型与架构模型.md)
+-   [Hadoop 系列 - HDFS存储模型与架构模型](Hadoop系列-HDFS存储模型与架构模型.md)
 -   [Hadoop 系列 - Block 副本放置策略](Hadoop系列-Block副本放置策略.md)
 -   [Hadoop 系列 - HDFS 文件读写流程](Hadoop系列-HDFS的读写流程.md)
 

@@ -89,6 +89,10 @@ set 锁的实现有 2 点需要注意：
 ### 可重入性分析
 由于 value 具有唯一性，可以确定锁持有者的身份，因此 **具有可重入性**。
 
+## Demo
+
+[Redis Distributed Lock Demo](https://github.com/TonyaBaSy/redis-demo/tree/master/distribute-lock) 中实现了以上两种分布式锁。
+
 ## 版权声明
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。
