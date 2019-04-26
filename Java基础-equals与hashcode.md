@@ -50,7 +50,25 @@ public boolean equals(Object tar) {
 2.  equals 一致性：equals() 相等的两个对象，hashCode 也应该相等
 3.  冲突性：不同的对象 hashcode 可能相同
 
-hashcode 用于基于 hash 的 collection 的唯一性判定操作，因此，下面的代码中，hashmap 后去的值为 null。
+hashcode 用于基于 hash 的 collection 的唯一性判定条件。在 Team 类中没有实现 hashCode 方法，hashmap.get 的值为 null，尽管 equals 为 true。
+
+```java
+/**
+ * 仅实现 equals 方法，导致相同的 Team 无法从 hashmap 中获取
+ */
+@Test
+public void equalsWithoutHashcode() {
+    Team t1 = new Team("tom", 10);
+    Team t2 = new Team("jerry", 4);
+
+    HashMap<Team, String> hashMap = new HashMap<>();
+    hashMap.put(t1, "tom");
+    hashMap.put(t2, "jerry");
+
+    Team target = new Team("tom", 10);
+    System.out.println(hashMap.get(target)); // null
+}
+```
 
 ### hashcode 与冲突
 
@@ -69,3 +87,8 @@ public final int hashCode() {
 
 1.  31 作为质数，可以有效的减少 hashcode 冲突
 2.  `31 * i` 可以被 `31 * i = i <<< 5 - i` 的位运算所代替，从而加快 hashcode 生成速度
+
+### 参考资料
+
+-   [Guide to hashCode() in Java](https://www.baeldung.com/java-hashcode)
+-   [Java equals() and hashCode() Contracts](https://www.baeldung.com/java-equals-hashcode-contracts)
