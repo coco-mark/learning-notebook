@@ -92,3 +92,4 @@ public final int hashCode() {
 
 -   [Guide to hashCode() in Java](https://www.baeldung.com/java-hashcode)
 -   [Java equals() and hashCode() Contracts](https://www.baeldung.com/java-equals-hashcode-contracts)
+-   [[科普：为什么 String hashCode 方法选择数字31作为乘子](https://segmentfault.com/a/1190000010799123)](https://segmentfault.com/a/1190000010799123)
