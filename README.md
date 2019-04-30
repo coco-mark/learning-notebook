@@ -14,6 +14,7 @@
 -  [线程的一生](./线程的一生.md)
 -  [JVM 内存回收](JVM内存回收.md)
 -  [Java 基础 - equals 与 hashcode](Java基础-equals与hashcode.md)
+-  [Java基础 - String 内存分配](Java基础-String内存分配.md)
 
 ## Redis
 
