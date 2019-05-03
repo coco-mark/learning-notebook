@@ -18,7 +18,7 @@
 
 ## Redis
 
--   [Redis分布式锁](./Redis系列-Redis分布式锁.md)
+-   [Redis 分布式锁](./Redis系列-Redis分布式锁.md)
 
 ## Hadoop
 
