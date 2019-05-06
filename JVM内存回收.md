@@ -42,7 +42,7 @@ JVM Standard Specification 中，JVM 运行时的内存分为 5 部分，具体�
 
 Hotspot 在 JDK 1.8 以后，将方法区（Method Area）移出了 JVM，放在了本地内存中：
 
-![hotspot 1.8](assets/hotspot 1.8.png)
+![hotspot 1.8](assets/hotspot_1.8.png)
 
 ## JVM 垃圾回收算法
 
